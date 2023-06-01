@@ -126,3 +126,25 @@ foreach (Student s in students10)
     Console.WriteLine($"{s.Lastname} {s.Firstname} {s.Result}");
 }
 Console.WriteLine();
+
+
+
+
+Console.WriteLine("Nombre d'étudiant");
+int nbStudent = people.OfType<Student>().Count();
+Console.WriteLine(nbStudent);
+Console.WriteLine();
+
+Console.WriteLine("Utilisation du Min/Max sur les string");
+string? demo1 = people.OfType<Student>().Min(s => s.Lastname);
+string? demo2 = people.OfType<Student>().Max(s => s.Lastname);
+
+Console.WriteLine("Min : " + demo1);
+Console.WriteLine("Max : " + demo2);
+Console.WriteLine();
+
+
+Console.WriteLine("Utilisation du Average");
+var demo3 = people.OfType<Student>().Average(s => s.Lastname.Length);
+Console.WriteLine("La moyenne de la longeur des noms de famille : " + demo3);
+Console.WriteLine();
