@@ -148,3 +148,27 @@ Console.WriteLine("Utilisation du Average");
 var demo3 = people.OfType<Student>().Average(s => s.Lastname.Length);
 Console.WriteLine("La moyenne de la longeur des noms de famille : " + demo3);
 Console.WriteLine();
+
+// Obtenir la liste des etudiants groupés par leur section
+// => Afficher les infos : Nom Complet + Status (Réussi / Échoué)
+
+var groupStudents = people.OfType<Student>()
+                   .Select(s => new
+                   {
+                       Nom = s.Firstname + " " + s.Lastname,
+                       Status = (s.Result >= 10) ? "Réussi" : "Échoué",
+                       Section = s.Section
+                   })
+                   .GroupBy(s => s.Section);
+
+Console.WriteLine("GroupBy : ");
+foreach(var group in groupStudents)
+{
+    Console.WriteLine(" - Section : " + group.Key);
+    foreach (var student in group)
+    {
+        Console.WriteLine($"  {student.Nom} / {student.Status}.");
+    }
+}
+
+Console.WriteLine();
